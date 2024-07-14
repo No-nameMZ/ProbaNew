@@ -42,7 +42,7 @@ class CakeTableViewCell: UITableViewCell {
         }
         
     }
-    // Добавляем свойство для отслеживания количества тортов в корзине
+    /// Cвойство для отслеживания количества тортов в корзине
     var quantity: Int = 0 {
         didSet {
             quantityLabel.text = "\(quantity)"
@@ -66,16 +66,21 @@ class CakeTableViewCell: UITableViewCell {
     }
     
     @IBAction func deleteButtonDidTapped() {
+        
+        // Уменьшаем количество тортов в корзине
         if quantity > 0 {
             quantity -= 1
         }
         
+        // Если количество тортов в корзине равно 0, скрываем кнопки управления и показываем кнопку цены
         if quantity == 0 {
             inBasket = false
         }
     }
     
     @IBAction func addButtonDidTapped() {
+        
+        // Увеличиваем количество тортов в корзине
         quantity += 1
     }
     
@@ -93,10 +98,12 @@ class CakeTableViewCell: UITableViewCell {
         isLiked = cake.isLike
         inBasket = cake.inBasket
         
+        // Устанавливаем начальное количество тортов в корзине
         if cake.inBasket {
             quantity = cake.quantity
         }
         
+        // Обновляем текст метки количества
         quantityLabel.text = "\(quantity)"
     }
 }
